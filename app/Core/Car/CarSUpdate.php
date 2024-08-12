@@ -22,33 +22,29 @@ class CarSUpdate
             }
 
             $car = Car::firstOrNew([
-                'supplier_id' => $carObject->getSupplierId(),
                 'external_car_id' => $carObject->getExternalCarId(),
-            ],
-            [
-                'brand' => $carObject->getBrand(),
-                'model' => $carObject->getModel(),
-                'year' => $carObject->getYear(),
-                'version' => $carObject->getVersion(),
-                'color' => $carObject->getColor(),
-                'km' => $carObject->getKm(),
-                'fuel' => $carObject->getFuel(),
-                'gear' => $carObject->getGear(),
-                'doors' => $carObject->getDoors(),
-                'price' => $carObject->getPrice(),
-                'external_updated_at' => $carObject->getExternalUpdatedAt(),
             ]);
 
             if($car->exists) {
-                //verifica se teve atualizacao no sistema do fornecedor
-                if($car->external_updated_at !== $carObject->getExternalUpdatedAt()){
-                    $car->save();
+                //verifica se teve atualizacao no sistema do fornecedor.
+                if($car->external_updated_at >= $carObject->getExternalUpdatedAt()){
+                    continue;
                 }
-
-            } else {
-                $car->save();
             }
 
+            $car->supplier_id = $carObject->getSupplierId();
+            $car->brand = $carObject->getBrand();
+            $car->model = $carObject->getModel();
+            $car->year = $carObject->getYear();
+            $car->version = $carObject->getVersion();
+            $car->color = $carObject->getColor();
+            $car->km = $carObject->getKm();
+            $car->fuel = $carObject->getFuel();
+            $car->gear = $carObject->getGear();
+            $car->doors = $carObject->getDoors();
+            $car->price = $carObject->getPrice();
+            $car->external_updated_at = $carObject->getExternalUpdatedAt();
+            $car->save();
         }
     }
 }
