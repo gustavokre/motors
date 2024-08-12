@@ -1,5 +1,11 @@
 import './bootstrap';
 import '../css/app.css';
+//devextreme
+import 'devextreme/dist/css/dx.material.purple.light.css';
+import deMessages from "devextreme/localization/messages/pt.json";
+import { locale, loadMessages } from "devextreme/localization";
+loadMessages(deMessages);
+locale(navigator.language);
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
