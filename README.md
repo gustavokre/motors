@@ -16,7 +16,7 @@ git clone https://github.com/gustavokre/motors.git
 
 ### 2. Comandos na raiz do projeto
 
-Necessário criar ter o .env configurado
+Necessário ter o .env configurado
 
 ```bash
 cp .env.example .env
