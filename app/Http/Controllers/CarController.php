@@ -14,13 +14,13 @@ class CarController extends Controller
     }
 
     public function updateWebMotors(Request $request){
-        $api = new RevendaMaisApi();
+        $api = new WebMotorsApi();
         $done = $api->start();
         $status = $done ? 200 : 500;
         return response()->json(null, $status);
     }
     public function updateRendaMais(Request $request){
-        $api = new WebMotorsApi();
+        $api = new RevendaMaisApi();
         $done = $api->start();
         $status = $done ? 200 : 500;
         return response()->json(null, $status);
